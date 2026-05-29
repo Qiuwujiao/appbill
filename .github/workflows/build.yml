@@ -18,7 +18,7 @@ jobs:
       - name: 更新系统并安装全套依赖、Java17
         run: |
           sudo apt update && sudo apt full-upgrade -y
-          sudo apt install -y build-essential git libssl-dev libffi-dev autoconf automake libtool zlib1g-dev openjdk-17-jdk unzip wget
+sudo apt install -y build-essential git libssl-dev libffi-dev autoconf automake libtool zlib1g-dev openjdk-17-jdk unzip wget autotools-dev autopoint
           echo "JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64" >> $GITHUB_ENV
 
       - name: 升级pip，安装构建工具链
