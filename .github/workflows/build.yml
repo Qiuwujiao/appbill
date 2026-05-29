@@ -11,13 +11,13 @@ jobs:
         uses: actions/checkout@v4
 
       # 新增6G交换内存，解决编译内存溢出（核心修复点）
-      - name: 扩容交换内存
-        run: |
-          sudo fallocate -l 8G /swapfile
-          sudo chmod 600 /swapfile
-          sudo mkswap /swapfile
-          sudo swapon /swapfile
-          free -h
+    - name: 扩容交换内存
+  run: |
+    sudo dd if=/dev/zero of=/swapfile bs=1G count=6
+    sudo chmod 600 /swapfile
+    sudo mkswap /swapfile
+    sudo swapon /swapfile
+    free -h
 
       - name: 安装Python3.11
         uses: actions/setup-python@v5
