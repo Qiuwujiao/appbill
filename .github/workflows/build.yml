@@ -10,26 +10,37 @@ jobs:
       - name: 拉取项目代码
         uses: actions/checkout@v4
 
+      # 新增6G交换内存，解决编译内存溢出（核心修复点）
+      - name: 扩容交换内存
+        run: |
+          sudo fallocate -l 6G /swapfile
+          sudo chmod 600 /swapfile
+          sudo mkswap /swapfile
+          sudo swapon /swapfile
+          free -h
+
       - name: 安装Python3.11
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
 
-      - name: 安装系统依赖
+      - name: 更新系统并安装全套依赖、Java17
         run: |
-          sudo apt update
-          sudo apt install -y build-essential git libssl-dev libffi-dev autoconf automake libtool zlib1g-dev openjdk-17-jdk
+          sudo apt update && sudo apt full-upgrade -y
+          sudo apt install -y build-essential git libssl-dev libffi-dev autoconf automake libtool zlib1g-dev openjdk-17-jdk unzip wget
+          echo "JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64" >> $GITHUB_ENV
 
-      - name: 安装构建工具
+      - name: 升级pip，安装构建工具链
         run: |
-          pip install --upgrade pip
+          pip install --upgrade pip setuptools wheel
           pip install buildozer==1.6.0 cython==0.29.37 kivy==2.2.1 kivymd==1.2.0
 
-      - name: 编译APK
-        run: buildozer android debug
+      # 开启最高级别日志，下次失败可以看到精确报错
+      - name: 编译安卓APK
+        run: buildozer android debug log_level=2
 
-      - name: 上传生成的APK
+      - name: 上传打包完成的APK
         uses: actions/upload-artifact@v4
         with:
-          name: 记账APP-APK安装包
+          name: 记账APP安装包
           path: bin/*.apk
