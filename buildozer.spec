@@ -20,7 +20,7 @@ android.ndk = 25b
 android.skip_update = False  
 # 原来的True会跳过SDK更新，改成False让它自动安装工具
 android.buildtools = 33.0.2
-android.sdk_path = /home/qiuwujiao/.buildozer/android/platform/android-sdk
+# android.sdk_path = /home/qiuwujiao/.buildozer/android/platform/android-sdk
 android.archs = arm64-v8a, armeabi-v7a
 android.enable_androidx = True
 android.use_aapt2 = True
@@ -32,6 +32,6 @@ android.androidtheme = @android:style/Theme.Material.Light.NoActionBar
 android.add_assets = .
 
 # 强制使用你本地已经下载好的p4a，完全跳过git检查和下载
-p4a.source_dir = /home/qiuwujiao/python-for-android
-p4a.extra_args = --break-system-packages --no-download
+# p4a.source_dir = /home/qiuwujiao/python-for-android
+# p4a.extra_args = --break-system-packages --no-download
 
