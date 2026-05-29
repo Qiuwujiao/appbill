@@ -8,7 +8,7 @@ source.include_exts = py,png,jpg,kv,atlas,json,db
 version = 1.0
 
 # 核心依赖（适配安卓编译）
-requirements = python3,kivy==2.2.1,kivymd==1.2.0,pillow,requests,urllib3,chardet,idna,certifi,plyer
+requirements = python3,kivy==2.2.1,kivymd==1.2.0,pillow,requests
 
 android.accept_sdk_license = True
 
