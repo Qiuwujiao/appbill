@@ -8,7 +8,7 @@ source.include_exts = py,png,jpg,kv,atlas,json,db
 version = 1.0
 
 # 核心依赖（适配安卓编译）
-requirements = python3,kivy==2.2.1,kivymd==1.2.0,pillow,requests
+requirements = python3,kivy==2.2.1,pillow,requests
 
 android.accept_sdk_license = True
 
@@ -21,7 +21,7 @@ android.skip_update = False
 # 原来的True会跳过SDK更新，改成False让它自动安装工具
 android.buildtools = 33.0.2
 # android.sdk_path = /home/qiuwujiao/.buildozer/android/platform/android-sdk
-android.archs = arm64-v8a, armeabi-v7a
+android.archs = arm64-v8a
 android.enable_androidx = True
 android.use_aapt2 = True
 
