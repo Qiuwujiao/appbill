@@ -1,0 +1,9 @@
+# 忽略buildozer生成的临时文件
+.buildozer/
+bin/
+.build/
+.gradle/
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/

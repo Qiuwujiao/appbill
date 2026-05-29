@@ -1,0 +1,95 @@
+BoxLayout:
+    orientation: "vertical"
+
+    MDToolbar:
+        title: "截图识别自动记账"
+        md_bg_color: app.theme_cls.primary_color
+
+    MDTabs:
+        id: tabs
+
+        Tab:
+            text: "首页"
+            MDLabel:
+                text: "首页统计\n本月支出、今日支出、图表展示"
+                halign: "center"
+
+        Tab:
+            text: "截图识别"
+            BoxLayout:
+                orientation: "vertical"
+                padding:20
+                spacing:10
+
+                # 去掉手动输入路径，直接按钮选图
+                MDRaisedButton:
+                    text: "从相册选择图片并识别"
+                    on_release: app.root.start_ocr()
+
+                MDLabel:
+                    text: "识别结果"
+
+                RecycleView:
+                    id: bill_result
+                    viewclass: "OneLineListItem"
+
+                    RecycleBoxLayout:
+                        default_size: None, dp(40)
+                        default_size_hint: 1, None
+                        size_hint_y: None
+                        height: self.minimum_height
+                        orientation: "vertical"
+
+        Tab:
+            text: "账单"
+            BoxLayout:
+                orientation: "vertical"
+                padding:10
+                spacing:8
+
+                MDTextField:
+                    id: bill_shop
+                    hint_text: "商户"
+                MDTextField:
+                    id: bill_time
+                    hint_text: "时间 2026.05.25 12:00"
+                MDTextField:
+                    id: bill_amount
+                    hint_text: "金额"
+                MDTextField:
+                    id: bill_category
+                    hint_text: "分类"
+
+                MDRaisedButton:
+                    text: "保存账单"
+                    on_release: app.root.save_bill()
+
+                RecycleView:
+                    id: bill_list
+                    viewclass: "TwoLineListItem"
+                    RecycleBoxLayout:
+                        default_size: None, dp(50)
+                        default_size_hint: 1, None
+                        size_hint_y: None
+                        height: self.minimum_height
+                        orientation: "vertical"
+
+        Tab:
+            text: "分析"
+            MDLabel:
+                text: "消费统计、饼图、柱状图"
+                halign: "center"
+
+        Tab:
+            text: "我的"
+            BoxLayout:
+                orientation: "vertical"
+                padding:30
+                spacing:20
+
+                MDSwitch:
+                    id: theme_switch
+                    on_active: app.root.switch_theme(self.active)
+
+                MDLabel:
+                    text: "深色模式 / 浅色模式 切换"
