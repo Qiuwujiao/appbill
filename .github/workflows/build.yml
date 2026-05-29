@@ -13,7 +13,7 @@ jobs:
       # 新增6G交换内存，解决编译内存溢出（核心修复点）
       - name: 扩容交换内存
         run: |
-          sudo fallocate -l 6G /swapfile
+          sudo fallocate -l 8G /swapfile
           sudo chmod 600 /swapfile
           sudo mkswap /swapfile
           sudo swapon /swapfile
